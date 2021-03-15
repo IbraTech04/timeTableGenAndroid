@@ -13,7 +13,7 @@ void parseDate(String lineIn) {
       String dayOfWeek = week[c.get(Calendar.DAY_OF_WEEK)];
       String month = months[c.get(Calendar.MONTH) + 1];
       calculateClassesOther(dayOfWeek, month);
-      noSchoolOther = noSchoolOther(dayOfWeek, c.get(Calendar.DAY_OF_MONTH), c.get(Calendar.MONTH));
+      noSchoolOther = noSchoolOther(dayOfWeek, c.get(Calendar.DAY_OF_MONTH), c.get(Calendar.MONTH)+1);
       otherCalDate = dayOfWeek + " " + month + " " + c.get(Calendar.DAY_OF_MONTH) + " 2021";
     } else if (lineIn.equals("TODAY")) {
       screenNumber = 0;
@@ -30,7 +30,7 @@ void parseDate(String lineIn) {
       String dayOfWeek = week[c.get(Calendar.DAY_OF_WEEK)];
       String month = months[c.get(Calendar.MONTH) + 1];
       calculateClassesOther(dayOfWeek, month);
-      noSchoolOther = noSchoolOther(dayOfWeek, c.get(Calendar.DAY_OF_MONTH), c.get(Calendar.MONTH));
+      noSchoolOther = noSchoolOther(dayOfWeek, c.get(Calendar.DAY_OF_MONTH), c.get(Calendar.MONTH)+1);
       otherCalDate = dayOfWeek + " " + month + " " + c.get(Calendar.DAY_OF_MONTH) + " 2021";
     }
   }
