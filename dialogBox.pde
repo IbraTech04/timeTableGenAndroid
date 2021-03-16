@@ -204,3 +204,37 @@ void updatedFile() {
   }
   );
 }
+
+void update() {
+  act = this.getActivity();
+
+  final TextView msg = new TextView(act); 
+  msg.setBackgroundColor(Color.WHITE);
+  msg.setTextSize(20);
+  msg.setGravity(Gravity.CENTER_HORIZONTAL); 
+  msg.setText("A new version is availible. Would you like to update?"); 
+  act.runOnUiThread(new Runnable() {
+    public void run() {
+      AlertDialog.Builder builder = new AlertDialog.Builder(act);
+      builder.setView(msg);
+      builder.setTitle("Reminder");
+      builder.setPositiveButton("Sure", 
+        new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, 
+          int which) {
+          link("https://github.com/IbraTech04/timeTableGenAndroid/releases");
+        }
+      }
+      );
+      builder.setNegativeButton("Screw you and your update Ibrahim", 
+        new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, 
+          int which) {
+        }
+      }
+      )
+      .show();
+    }
+  }
+  );
+}

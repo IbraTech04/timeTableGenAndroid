@@ -70,6 +70,9 @@ void setup() {
   if (hour() > 15) {
     otherDay = "tomorrow";
   }
+  String[] nversionFromServer = loadStrings("https://raw.githubusercontent.com/IbraTech04/updateServer/master/Vers.txt");
+  if (!nversionFromServer[0].equals(ver)) {
+  }
 }
 
 void draw() {
