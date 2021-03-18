@@ -29,11 +29,8 @@ void setup() {
   background(0);
   fullScreen();
   homep[0] = loadImage("HomeL.png");
-  homep[1] = loadImage("Home.png");
   settingsp[0] = loadImage("SettingsL.png");
-  settingsp[1] = loadImage("Settings.png");
   calendar[0] = loadImage("calL.png");
-  calendar[1] = loadImage("cal.png");
   smooth();
   noStroke();
   font = createFont("Product Sans Bold.ttf", 100); //Load the font
@@ -65,14 +62,8 @@ void setup() {
     Theme = "Dark";
     cScheme = "Blue";
   }
-
   calculateClasses();
-  if (hour() > 15) {
-    otherDay = "tomorrow";
-  }
-  String[] nversionFromServer = loadStrings("https://raw.githubusercontent.com/IbraTech04/updateServer/master/Vers.txt");
-  if (!nversionFromServer[0].equals(ver)) {
-  }
+  checkForUpdates();
 }
 
 void draw() {
