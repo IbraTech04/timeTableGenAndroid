@@ -26,6 +26,8 @@ String otherDay;
 float alpha = 0;
 
 void setup() {
+  requestPermission("android.permission.READ_EXTERNAL_STORAGE", "doNothing");
+  requestPermission("android.permission.WRITE_EXTERNAL_STORAGE", "downloadFile");
   background(0);
   fullScreen();
   homep[0] = loadImage("HomeL.png");
@@ -63,81 +65,89 @@ void setup() {
     cScheme = "Blue";
   }
   calculateClasses();
-  checkForUpdates();
+  try {
+    checkForUpdates();
+  }
+  catch (Exception e) {
+  }
 }
 
 void draw() {
-  tint(picCol, alpha);
-  colorShift(newColors[0], newColors[1], newColors[2]);
-  colorShiftBG(newBG[0], newBG[1], newBG[2]);
-  colorShiftText(newText[0], newText[1], newText[2]);
-  colorShiftImg(colToBe);
-  sizeDeteccLegacy();
-  calculateClasses();
-  if (isSetUp) {
-    if (screenNumber == 0) {
-      if (alpha <= 255) {
-        alpha+=17;
-      }
-      mainScreen();
-    } else if (screenNumber == 1) {
-      background(backGroundColor[0], backGroundColor[1], backGroundColor[2]);
-      fill(colors[0], colors[1], colors[2]);
-      rect(0, height -  height*0.102986612, width, height); //These two are the two rectangles on the top and bottom
-      rect(0, 0, width, height*0.102986612);
-      guiSettings();
-    } else {
-      background(backGroundColor[0], backGroundColor[1], backGroundColor[2]);
-      fill(colors[0], colors[1], colors[2]);
-      rect(0, height -  height*0.102986612, width, height); //These two are the two rectangles on the top and bottom
-      rect(0, 0, width, height*0.102986612);
-      image(homep[ishift], height*0.102986612/2, height - height*0.102986612/2, height*0.102986612/2, height*0.102986612/2);
-      image(calendar[ishift], width - height*0.102986612/2, height - height*0.102986612/2, height*0.102986612/2, height*0.102986612/2);
-      fill(textColor[0], textColor[1], textColor[2]);
-      textFont(font, 25*displayDensity); //Setting Text Font
-      text("TMTimeTable Custom Date Entry", width/2, height*0.0494444444 + 25); //Top Text
-      textFont(font, 20*displayDensity); //Setting Text Font
-      text("Your Schedule for entered date:", width/2, height/2-200);
-      text(otherCalDate + " (Day " + periodOther + ")", width/2, height/2-130);
-      drawTimesOther();
-    }
+  if (updateMode) {
+    background(0);
+    beginUpdate();
   } else {
-    if (state != 3) {
-      if (alpha < 255) {
-        alpha+=17;
+    tint(picCol, alpha);
+    colorShift(newColors[0], newColors[1], newColors[2]);
+    colorShiftBG(newBG[0], newBG[1], newBG[2]);
+    colorShiftText(newText[0], newText[1], newText[2]);
+    colorShiftImg(colToBe);
+    sizeDeteccLegacy();
+    calculateClasses();
+    if (isSetUp) {
+      if (screenNumber == 0) {
+        if (alpha <= 255) {
+          alpha+=17;
+        }
+        mainScreen();
+      } else if (screenNumber == 1) {
+        background(backGroundColor[0], backGroundColor[1], backGroundColor[2]);
+        fill(colors[0], colors[1], colors[2]);
+        rect(0, height -  height*0.102986612, width, height); //These two are the two rectangles on the top and bottom
+        rect(0, 0, width, height*0.102986612);
+        guiSettings();
+      } else {
+        background(backGroundColor[0], backGroundColor[1], backGroundColor[2]);
+        fill(colors[0], colors[1], colors[2]);
+        rect(0, height -  height*0.102986612, width, height); //These two are the two rectangles on the top and bottom
+        rect(0, 0, width, height*0.102986612);
+        image(homep[ishift], height*0.102986612/2, height - height*0.102986612/2, height*0.102986612/2, height*0.102986612/2);
+        image(calendar[ishift], width - height*0.102986612/2, height - height*0.102986612/2, height*0.102986612/2, height*0.102986612/2);
+        fill(textColor[0], textColor[1], textColor[2]);
+        textFont(font, 25*displayDensity); //Setting Text Font
+        text("TMTimeTable Custom Date Entry", width/2, height*0.0494444444 + 25); //Top Text
+        textFont(font, 20*displayDensity); //Setting Text Font
+        text("Your Schedule for entered date:", width/2, height/2-200);
+        text(otherCalDate + " (Day " + periodOther + ")", width/2, height/2-130);
+        drawTimesOther();
       }
-    }
-    background(backGroundColor[0], backGroundColor[1], backGroundColor[2]);
-    fill(colors[0], colors[1], colors[2], alpha);
-    rect(0, height -  height*0.102986612, width, height); //These two are the two rectangles on the top and bottom
-    rect(0, 0, width, height*0.102986612);
-    textAlign(CENTER);
-    fill(textColor[0], textColor[1], textColor[2], alpha);
-    textFont(font, 25*displayDensity); //Setting Text Font
+    } else {
+      if (state != 3) {
+        if (alpha < 255) {
+          alpha+=17;
+        }
+      }
+      background(backGroundColor[0], backGroundColor[1], backGroundColor[2]);
+      fill(colors[0], colors[1], colors[2], alpha);
+      rect(0, height -  height*0.102986612, width, height); //These two are the two rectangles on the top and bottom
+      rect(0, 0, width, height*0.102986612);
+      textAlign(CENTER);
+      fill(textColor[0], textColor[1], textColor[2], alpha);
+      textFont(font, 25*displayDensity); //Setting Text Font
 
-    text("TMTimeTable First Time Setup", width/2, height*0.0494444444 + 25); //Top Text
-    if (state == 0) {
-      text("Type your cohort (A, B, or C)", width/2, height/2-225);
-    } else if (state == 1) {
-      text("First Period Class?", width/2, height/2-225);
-      if (!isOpen1) {
-        dialogBoxP1();
-        isOpen1 = true;
-      }
-    } else if (state == 2) {
-      if (!isOpen2) {
-        dialogBoxP2();
-        isOpen2 = true;
-      }
-    } else if (state == 3) {
-      alpha-= 15;
-      if (alpha <= 0) {
-        isSetUp = true;
+      text("TMTimeTable First Time Setup", width/2, height*0.0494444444 + 25); //Top Text
+      if (state == 0) {
+        text("Type your cohort (A, B, or C)", width/2, height/2-225);
+      } else if (state == 1) {
+        text("First Period Class?", width/2, height/2-225);
+        if (!isOpen1) {
+          dialogBoxP1();
+          isOpen1 = true;
+        }
+      } else if (state == 2) {
+        if (!isOpen2) {
+          dialogBoxP2();
+          isOpen2 = true;
+        }
+      } else if (state == 3) {
+        alpha-= 15;
+        if (alpha <= 0) {
+          isSetUp = true;
+        }
       }
     }
   }
 }
-
 
 void keyPressed() {
   if (!isSetUp) {
