@@ -256,7 +256,8 @@ void urgentUpdate() {
         new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, 
           int which) {
-          link("https://github.com/IbraTech04/timeTableGenAndroid/releases");
+          //link("https://github.com/IbraTech04/timeTableGenAndroid/releases");
+          updateMode = true;
         }
       }
       );

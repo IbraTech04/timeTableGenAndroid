@@ -9,7 +9,6 @@ void parseDate(String lineIn) {
       Calendar c = Calendar.getInstance();
       c.set(Calendar.DAY_OF_MONTH, day()+1);
       dayOfMonth = c.get(Calendar.DAY_OF_MONTH);
-      c.set(Calendar.MONTH, month()-1);
       String dayOfWeek = week[c.get(Calendar.DAY_OF_WEEK)];
       String month = months[c.get(Calendar.MONTH) + 1];
       calculateClassesOther(dayOfWeek, month);
