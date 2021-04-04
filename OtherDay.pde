@@ -139,7 +139,7 @@ boolean noSchoolOther(String weekDay, int day, int month) {
   if (weekDay == "Saturday" || weekDay == "Sunday") {
     reason = "Weekend";
     return true;
-  } else if (paDayOther(day, month)) {
+  } else if (paDayOther(day, month + 1)) {
     reason = "PA Day";
     return true;
   } else {
@@ -151,7 +151,7 @@ boolean paDayOther(int day, int month) {
   int[] days = {15, 2, 5, 12, 13, 14, 15, 16, 26, 27, 24};
   for (int i = 0; i < days.length; i++) { 
     if (day == days[i] && month == months[i]) {
-      println(day,month);
+      println(day, month);
       return true;
     }
   }
@@ -182,7 +182,7 @@ String preCheckWed(boolean next) {
     changeFactor += 6;
   } else if ((wed.get(Calendar.DAY_OF_WEEK)) == 6) {
     changeFactor += 5;
-  } else if ((wed.get(Calendar.DAY_OF_WEEK)) == 0) {
+  } else if ((wed.get(Calendar.DAY_OF_WEEK)) == 7) {
     changeFactor += 4;
   }
 

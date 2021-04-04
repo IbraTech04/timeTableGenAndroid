@@ -6,6 +6,8 @@ import android.app.AlertDialog;
 import android.text.Editable;
 import android.widget.EditText;
 Activity act;
+import java.util.ArrayList;
+
 
 String[] week = {"", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}, months = {"", "January", "February", "March", "April", "May", "June", "July", "Auguest", "September", "October", "November", "December"};
 int date = cal.get(Calendar.DAY_OF_WEEK), wed = cal.get(Calendar.WEEK_OF_MONTH), period, state = 0;
@@ -24,8 +26,11 @@ boolean isOpen1 = false, isOpen2 = false, isRemindedOfAd = false;
 String calDate = week[date] + " " + months[month()] + " " + day() + " " + year();
 String otherDay;
 float alpha = 0;
+ArrayList<WeekRect> rects = new ArrayList<WeekRect>();
+Calendar viewWeek = Calendar.getInstance(); //Get calendar date
 
 void setup() {
+  frameRate(60);
   requestPermission("android.permission.READ_EXTERNAL_STORAGE", "doNothing");
   requestPermission("android.permission.WRITE_EXTERNAL_STORAGE", "downloadFile");
   background(0);
@@ -35,7 +40,7 @@ void setup() {
   calendar[0] = loadImage("calL.png");
   smooth();
   noStroke();
-  font = createFont("Product Sans Bold.ttf", 100); //Load the font
+  font = createFont("ProductSans-Bold.ttf", 100); //Load the font
   wedDates = loadStrings("Wed1.txt");
   try {
     pref = loadStrings("pref.txt");
@@ -70,6 +75,7 @@ void setup() {
   }
   catch (Exception e) {
   }
+  initWeekView();
 }
 
 void draw() {
@@ -89,7 +95,11 @@ void draw() {
         if (alpha <= 255) {
           alpha+=17;
         }
-        mainScreen();
+        if (view == 0) {
+          mainScreen();
+        } else {
+          weekView();
+        }
       } else if (screenNumber == 1) {
         background(backGroundColor[0], backGroundColor[1], backGroundColor[2]);
         fill(colors[0], colors[1], colors[2]);
