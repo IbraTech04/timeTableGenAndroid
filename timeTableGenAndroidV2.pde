@@ -60,6 +60,8 @@ void setup() {
   homep[0] = loadImage("HomeL.png");
   settingsp[0] = loadImage("SettingsL.png");
   calendar[0] = loadImage("calL.png");
+  weekV = loadImage("weekL.png");
+
   smooth();
   noStroke();
   font = createFont("ProductSans-Bold.ttf", 100); //Load the font

@@ -68,7 +68,7 @@ void weekView() {
   imageMode(CENTER);
   image(settingsp[0], height*0.102986612/2, height - height*0.102986612/2, height*0.102986612/2, height*0.102986612/2);
   image(calendar[0], width - height*0.102986612/2, height - height*0.102986612/2, height*0.102986612/2, height*0.102986612/2);
-  //image(weekV, width/2, height - height*0.102986612/2, height*0.102986612/2, height*0.102986612/2);
+  image(weekV, width/2, height - height*0.102986612/2, height*0.102986612/2, height*0.102986612/2);
   fill(textColor[0], textColor[1], textColor[2], alpha);
   textFont(font, 25*displayDensity); //Setting Text Font
   textAlign(CENTER);

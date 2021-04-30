@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="3" android:versionName="3.2.6" package="com.techmaster.timetablegen">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="4" android:versionName="4" package="com.techmaster.timetablegen">
     <uses-sdk android:targetSdkVersion="29"/>
     <application android:icon="@mipmap/ic_launcher" android:label="TM TimeTable" android:requestLegacyExternalStorage="true">
         <activity android:configChanges="keyboardHidden|orientation" android:name=".MainActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">

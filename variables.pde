@@ -14,3 +14,5 @@ int view = 0;
 String[] reg;
 
 char backupCohort;
+
+PImage weekV;

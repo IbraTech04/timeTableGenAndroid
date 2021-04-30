@@ -198,13 +198,14 @@ void mousePressed() {
     } else if (mouseY >= height -  height*0.102986612 && mouseX >=width - height*0.102986612) {
       dialogBoxOtherDay();
     } else if (mouseY >= height -  height*0.102986612 && mouseX <= width/2 + height*0.102986612/2 && mouseX >= width/2 - height*0.102986612/2) {
-      if (view == 0) {
-        view = 1;
-      } else {
-        view = 0;
+      if (screenNumber == 0) {
+        if (view == 0) {
+          view = 1;
+        } else {
+          view = 0;
+        }
+        writeData(forceCohortC);
       }
-      writeData(forceCohortC); 
-      ;
     }
   }
 }
