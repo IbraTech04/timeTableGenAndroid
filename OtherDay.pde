@@ -2,6 +2,7 @@ int periodOther, dayOfMonth;
 char currentCohortOther;
 boolean noSchoolOther;
 String otherCalDate;
+
 void parseDate(String lineIn) {
   try {
     lineIn = lineIn.toUpperCase();
@@ -147,8 +148,8 @@ boolean noSchoolOther(String weekDay, int day, int month) {
   }
 }
 boolean paDayOther(int day, int month) {
-  int[] months = {2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5};
-  int[] days = {15, 2, 5, 12, 13, 14, 15, 16, 26, 27, 24};
+int[] months = {2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 6, 6};
+  int[] days = {15, 2, 5, 12, 13, 14, 15, 16, 26, 27, 24, 28, 29};
   for (int i = 0; i < days.length; i++) { 
     if (day == days[i] && month == months[i]) {
       println(day, month);

@@ -13,7 +13,7 @@ void dialogBoxP1() {
           if (!isSetUp) {
             state++;
           } else {
-            writeData();
+            writeData(forceCohortC); ;
           }
         }
       }
@@ -42,11 +42,11 @@ void dialogBoxP2() {
           String value = input.getText().toString().trim(); 
           p2Class = value;
           if (!isSetUp) {
-            writeData();
+            writeData(forceCohortC); ;
             state = 3;
             closeKeyboard();
           } else {
-            writeData();
+            writeData(forceCohortC); ;
           }
         }
       }
@@ -138,6 +138,40 @@ void warning() {
   }
   );
 }
+
+void cohortForce() {
+  act = this.getActivity();
+
+  final TextView msg = new TextView(act); 
+  msg.setBackgroundColor(Color.WHITE);
+  msg.setTextSize(20);
+  msg.setGravity(Gravity.CENTER_HORIZONTAL); 
+  msg.setText("Your cohort has been set to C, as per the server requirements"); 
+  act.runOnUiThread(new Runnable() {
+    public void run() {
+      AlertDialog.Builder builder = new AlertDialog.Builder(act);
+      builder.setView(msg);
+      builder.setTitle("Server Message");
+      builder.setPositiveButton("Okay Great", 
+        new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, 
+          int which) {
+        }
+      }
+      );
+      builder.setNegativeButton("Ibrahim why?", 
+        new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, 
+          int which) {
+        }
+      }
+      )
+      .show();
+    }
+  }
+  );
+}
+
 
 void remind() {
   act = this.getActivity();

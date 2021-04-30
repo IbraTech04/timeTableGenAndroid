@@ -4,19 +4,21 @@ int[] newText = new int[3];
 int ishift = 0;
 void mousePressed() { 
   if (!isSetUp) {
-    if (mouseX >=0 && mouseX <= width*0.1015625 && mouseY >=0 && mouseY <= height*0.0902777778) {
-      if (state == 2) {
-        isSetUp = true;
-        writeData();
-      } else {
+    if (state == 0) {
+      if (A.isPressed()) {
         state++;
+        cohort = 'A';
+      } else if (B.isPressed()) {
+        state++;
+        cohort = 'B';
+      } else if (C.isPressed()) {
+        state++;
+        cohort = 'C';
       }
-    } else {
-      openKeyboard();
     }
   } else {
     if (screenNumber == 1) {
-      if (mouseX >= them[0] && mouseX <= them[1] && mouseY >= them[2] && mouseY <= them[3]) {
+      if (settings.get(0).isPressed()) {
         if (Theme.equals("Dark")) {
           Theme = "Light";
           newBG[0] = 255;
@@ -110,8 +112,9 @@ void mousePressed() {
             newColors[2] = 145;
           }
         }
-        writeData();
-      } else if (mouseX >= clr[0] && mouseX <= clr[1] && mouseY >= clr[2] && mouseY <= clr[3]) {
+        writeData(forceCohortC); 
+        ;
+      } else if (settings.get(1).isPressed()) {
         if (!customTheme && !Theme.equals("Really Dark") && !Theme.equals("Really Light")) {
           if (cScheme.equals("Blue")) {
             cScheme = "Red";
@@ -145,24 +148,33 @@ void mousePressed() {
             newColors[2] = 245;
           }
         }
-        writeData();
-      } else if (mouseX >= changeCourseOne[0] && mouseX <= changeCourseOne[1] && mouseY >= changeCourseOne[2] && mouseY <= changeCourseOne[3]) {
+        writeData(forceCohortC); 
+        ;
+      } else if (settings.get(2).isPressed()) {
         dialogBoxP1();
-        writeData();
-      } else if (mouseX >= sizeDetecW(402, width) && mouseX <= sizeDetecW(881, width) && mouseY >= sizeDetecH(321, height) && mouseY <= sizeDetecH(358, height)) {
+        writeData(forceCohortC); 
+        ;
+        initWeekView();
+      } else if (settings.get(3).isPressed()) {
         dialogBoxP2();
-        writeData();
-      } else if (mouseX >= sizeDetecW(428, width) && mouseX <= sizeDetecW(863, width) && mouseY >= sizeDetecH(376, height) && mouseY <= sizeDetecH(414, height)) {
-        verCounter = 0;
-        if (cohort == 'A') {
-          cohort = 'B';
-        } else if (cohort == 'B') {
-          cohort = 'C';
-        } else {
-          cohort = 'A';
+        writeData(forceCohortC); 
+        ;
+        initWeekView();
+      } else if (settings.get(4).isPressed()) {
+        if (!forceCohortC) {
+          verCounter = 0;
+          if (cohort == 'A') {
+            cohort = 'B';
+          } else if (cohort == 'B') {
+            cohort = 'C';
+          } else {
+            cohort = 'A';
+          }
+          writeData(forceCohortC); 
+
+          initWeekView();
         }
-        writeData();
-      } else if (mouseX >= sizeDetecW(395, width) && mouseX <= sizeDetecW(897, width) && mouseY >= sizeDetecH(419, height) && mouseY <= sizeDetecH(462, height)) {
+      } else if (settings.get(5).isPressed()) {
         verCounter = 0;
         if (transSpeed == 1) {
           transSpeed = 2.5;
@@ -171,7 +183,8 @@ void mousePressed() {
         } else {
           transSpeed = 1;
         }
-        writeData();
+        writeData(forceCohortC); 
+        ;
       } else {
         verCounter ++;
       }
@@ -185,11 +198,13 @@ void mousePressed() {
     } else if (mouseY >= height -  height*0.102986612 && mouseX >=width - height*0.102986612) {
       dialogBoxOtherDay();
     } else if (mouseY >= height -  height*0.102986612 && mouseX <= width/2 + height*0.102986612/2 && mouseX >= width/2 - height*0.102986612/2) {
-      /*if (view == 0) {
+      if (view == 0) {
         view = 1;
       } else {
         view = 0;
-      } */
+      }
+      writeData(forceCohortC); 
+      ;
     }
   }
 }

@@ -12,13 +12,17 @@ String[] parseDateWeekView(String lineIn) {
   return toReturn;
 }
 int toSubtract;
+void mouseDragged() {    
+  toSubtract = pmouseY-mouseY;
+}
+
+void mouseReleased() {
+  toSubtract += (toSubtract)*1.2;
+}
 void weekView() {
-  if (mousePressed) {
-    toSubtract = pmouseY-mouseY;
-  }
   transScale -= toSubtract;
   if (toSubtract > 0) {
-    if (toSubtract > 150) {
+    if (toSubtract > 250) {
       toSubtract-=15;
     } else {
       toSubtract-=2.5;
@@ -27,7 +31,7 @@ void weekView() {
       toSubtract = 0;
     }
   } else if (toSubtract < 0) {
-    if (toSubtract < -150) {
+    if (toSubtract < -250) {
       toSubtract+=15;
     } else {
       toSubtract+=2.5;
@@ -42,15 +46,13 @@ void weekView() {
   if (transScale > 0) {
     transScale = 0;
   } 
-  if (transScale < (-180.8651685*daysLeft)-(height*0.44444) + height-1440) {
-    transScale =  (-180.8651685*daysLeft)-(height*0.44444) + height-1440;
+  if (transScale < (-200*daysLeft)-((height*0.102986612)*2) + height - 50) {
+    transScale = (-200*daysLeft)-((height*0.102986612)*2) + height - 50;
     toSubtract = 0;
   } 
   background(backGroundColor[0], backGroundColor[1], backGroundColor[2], alpha);
   textAlign(CENTER);
   fill(colors[0], colors[1], colors[2], alpha);
-  strokeWeight(2);
-  stroke(textColor[0], textColor[1], textColor[2], alpha);
   pushMatrix();
   translate(0, height*0.145833333);
   translate(0, transScale);
@@ -61,12 +63,12 @@ void weekView() {
   noStroke();
   popMatrix();
   fill(colors[0], colors[1], colors[2], alpha);
-  rect(0, height -  height*0.102986612, width, height); //These two are the two rectangles on the top and bottom
+  rect(0, height -  height*0.102986612, width, height, 15*displayDensity, 15*displayDensity, 0, 0); //These two are the two rectangles on the top and bottom
+  rect(0, 0, width, height*0.102986612, 0, 0, 15*displayDensity, 15*displayDensity);  
   imageMode(CENTER);
   image(settingsp[0], height*0.102986612/2, height - height*0.102986612/2, height*0.102986612/2, height*0.102986612/2);
   image(calendar[0], width - height*0.102986612/2, height - height*0.102986612/2, height*0.102986612/2, height*0.102986612/2);
   //image(weekV, width/2, height - height*0.102986612/2, height*0.102986612/2, height*0.102986612/2);
-  rect(0, 0, width, height*0.102986612);
   fill(textColor[0], textColor[1], textColor[2], alpha);
   textFont(font, 25*displayDensity); //Setting Text Font
   textAlign(CENTER);

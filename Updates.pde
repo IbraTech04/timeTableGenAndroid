@@ -1,7 +1,7 @@
 String[] nversionFromServer;
 void checkForUpdates() {
   nversionFromServer = loadStrings("https://raw.githubusercontent.com/IbraTech04/updateServer/master/Vers.txt");
-  if (!nversionFromServer[0].equals(ver)) {
+  if (isGreater(nversionFromServer[0])) {
     if (nversionFromServer[1].equals("URGENT")) {
       urgentUpdate();
     } else {
@@ -19,11 +19,7 @@ void doNothing(boolean granted) {
 }
 
 void downloadFile(boolean granted) {
-  if (granted) {
-    println("worked");
-  } else {
-    println("no");
-  }
+
 }
 byte[] test;
 void beginUpdate() {
@@ -63,4 +59,23 @@ void beginUpdate() {
     delay(10000); 
     updateMode = false;
   }
+}
+boolean isGreater(String version) {
+  String ver1 = ver + ".0.0";
+  String[] ww = split(version, '.');
+  String[] w = split(ver1, '.');
+  try { 
+
+    if (int(ww[0]) > int(w[0])) {
+      return true;
+    } else if (int(ww[1]) > int(w[1]) && int(ww[0]) == int(w[0])) {
+      return true;
+    } else if (int(ww[2]) > int(w[2]) && int(ww[1]) == int(w[1]) && int(ww[0]) == int(w[0])) {
+      return true;
+    }
+  } 
+  catch (Exception e) {
+    return true;
+  }
+  return false;
 }
