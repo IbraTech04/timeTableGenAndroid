@@ -4,18 +4,6 @@ int[] newText = new int[3];
 int ishift = 0;
 void mousePressed() { 
   if (!isSetUp) {
-    if (state == 0) {
-      if (A.isPressed()) {
-        state++;
-        cohort = 'A';
-      } else if (B.isPressed()) {
-        state++;
-        cohort = 'B';
-      } else if (C.isPressed()) {
-        state++;
-        cohort = 'C';
-      }
-    }
   } else {
     if (screenNumber == 1) {
       if (settings.get(0).isPressed()) {
@@ -112,8 +100,8 @@ void mousePressed() {
             newColors[2] = 145;
           }
         }
-        writeData(forceCohortC); 
-        ;
+        writeData(); 
+        
       } else if (settings.get(1).isPressed()) {
         if (!customTheme && !Theme.equals("Really Dark") && !Theme.equals("Really Light")) {
           if (cScheme.equals("Blue")) {
@@ -148,43 +136,28 @@ void mousePressed() {
             newColors[2] = 245;
           }
         }
-        writeData(forceCohortC); 
+        writeData(); 
         ;
       } else if (settings.get(2).isPressed()) {
         dialogBoxP1();
-        writeData(forceCohortC); 
-        ;
+        writeData(); 
+
         initWeekView();
       } else if (settings.get(3).isPressed()) {
         dialogBoxP2();
-        writeData(forceCohortC); 
-        ;
+        writeData(); 
+
         initWeekView();
       } else if (settings.get(4).isPressed()) {
-        if (!forceCohortC) {
-          verCounter = 0;
-          if (cohort == 'A') {
-            cohort = 'B';
-          } else if (cohort == 'B') {
-            cohort = 'C';
-          } else {
-            cohort = 'A';
-          }
-          writeData(forceCohortC); 
+        dialogBoxP3();
+        writeData(); 
 
-          initWeekView();
-        }
+        initWeekView();
       } else if (settings.get(5).isPressed()) {
-        verCounter = 0;
-        if (transSpeed == 1) {
-          transSpeed = 2.5;
-        } else if (transSpeed == 2.5) {
-          transSpeed = 3;
-        } else {
-          transSpeed = 1;
-        }
-        writeData(forceCohortC); 
-        ;
+        dialogBoxP4();
+        writeData(); 
+
+        initWeekView();
       } else {
         verCounter ++;
       }
@@ -204,7 +177,7 @@ void mousePressed() {
         } else {
           view = 0;
         }
-        writeData(forceCohortC);
+        writeData();
       }
     }
   }

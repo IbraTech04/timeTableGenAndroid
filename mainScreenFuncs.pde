@@ -9,7 +9,7 @@ void mainScreen() {
   text("TMTimeTable Home", width/2, height*0.0494444444 + 25); //Top Text
   textFont(font, 20*displayDensity); //Setting Text Font
   text("Your Schedule for today:", width/2, height/2-200);
-  text(calDate + " (Day " + period + ")", width/2, height/2-130);
+  text(calDate + " (Week " + (getWeekNum() + 1) + ")", width/2, height/2-130);
   imageMode(CENTER);
   image(settingsp[ishift], height*0.102986612/2, height - height*0.102986612/2, height*0.102986612/2, height*0.102986612/2);
   image(calendar[ishift], width - height*0.102986612/2, height - height*0.102986612/2, height*0.102986612/2, height*0.102986612/2);

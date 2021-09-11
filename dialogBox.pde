@@ -9,11 +9,12 @@ void dialogBoxP1() {
       builder.setPositiveButton("Done", new DialogInterface.OnClickListener() { 
         public void onClick(DialogInterface dialog, int whichButton) { 
           String value = input.getText().toString().trim(); 
-          p1Class = value;
+          courses[0][0] = value;
           if (!isSetUp) {
             state++;
           } else {
-            writeData(forceCohortC); ;
+            writeData(); 
+            ;
           }
         }
       }
@@ -40,13 +41,12 @@ void dialogBoxP2() {
       builder.setPositiveButton("Done", new DialogInterface.OnClickListener() { 
         public void onClick(DialogInterface dialog, int whichButton) { 
           String value = input.getText().toString().trim(); 
-          p2Class = value;
+          courses[0][1] = value;
           if (!isSetUp) {
-            writeData(forceCohortC); ;
-            state = 3;
-            closeKeyboard();
+            state++;
           } else {
-            writeData(forceCohortC); ;
+            writeData(); 
+            ;
           }
         }
       }
@@ -63,6 +63,72 @@ void dialogBoxP2() {
   );
 }
 
+void dialogBoxP3() {
+  act = this.getActivity();
+  act.runOnUiThread(new Runnable() {
+    public void run() {
+      AlertDialog.Builder builder = new AlertDialog.Builder(act);
+      final EditText input = new EditText(act); 
+      builder.setView(input); 
+      builder.setTitle("Enter your P3 Class:");
+      builder.setPositiveButton("Done", new DialogInterface.OnClickListener() { 
+        public void onClick(DialogInterface dialog, int whichButton) { 
+          String value = input.getText().toString().trim(); 
+          courses[1][0] = value;
+          if (!isSetUp) {
+            state++;
+          } else {
+            writeData(); 
+            ;
+          }
+        }
+      }
+      );
+      builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() { 
+        public void onClick(DialogInterface dialog, int whichButton) { 
+          dialog.cancel();
+        }
+      }
+      ); 
+      builder.show();
+    }
+  }
+  );
+}
+
+void dialogBoxP4() {
+  act = this.getActivity();
+  act.runOnUiThread(new Runnable() {
+    public void run() {
+      AlertDialog.Builder builder = new AlertDialog.Builder(act);
+      final EditText input = new EditText(act); 
+      builder.setView(input); 
+      builder.setTitle("Enter your P4 Class:");
+      builder.setPositiveButton("Done", new DialogInterface.OnClickListener() { 
+        public void onClick(DialogInterface dialog, int whichButton) { 
+          String value = input.getText().toString().trim(); 
+          courses[1][1] = value;
+          if (!isSetUp) {
+            writeData();
+            state = 4;
+            closeKeyboard();
+          } else {
+            writeData();
+          }
+        }
+      }
+      );
+      builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() { 
+        public void onClick(DialogInterface dialog, int whichButton) { 
+          dialog.cancel();
+        }
+      }
+      ); 
+      builder.show();
+    }
+  }
+  );
+}
 void dialogBoxOtherDay() {
   act = this.getActivity();
   act.runOnUiThread(new Runnable() {
@@ -130,39 +196,6 @@ void warning() {
         public void onClick(DialogInterface dialog, 
           int which) {
           dialogBoxOtherDay();
-        }
-      }
-      )
-      .show();
-    }
-  }
-  );
-}
-
-void cohortForce() {
-  act = this.getActivity();
-
-  final TextView msg = new TextView(act); 
-  msg.setBackgroundColor(Color.WHITE);
-  msg.setTextSize(20);
-  msg.setGravity(Gravity.CENTER_HORIZONTAL); 
-  msg.setText("Your cohort has been set to C, as per the server requirements"); 
-  act.runOnUiThread(new Runnable() {
-    public void run() {
-      AlertDialog.Builder builder = new AlertDialog.Builder(act);
-      builder.setView(msg);
-      builder.setTitle("Server Message");
-      builder.setPositiveButton("Okay Great", 
-        new DialogInterface.OnClickListener() {
-        public void onClick(DialogInterface dialog, 
-          int which) {
-        }
-      }
-      );
-      builder.setNegativeButton("Ibrahim why?", 
-        new DialogInterface.OnClickListener() {
-        public void onClick(DialogInterface dialog, 
-          int which) {
         }
       }
       )
