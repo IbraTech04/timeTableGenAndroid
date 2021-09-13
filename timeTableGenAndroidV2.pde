@@ -18,7 +18,7 @@ String dayOfWeek = week[date], monthString = months[month()] + year();
 boolean p1Online = true, p2Online = false, warningShown = false;
 String[] pref;
 PFont font;
-String Theme = "", cScheme = "", reason = "";
+String Theme = "", cScheme = "";
 boolean isSetUp = true, customTheme;
 PImage[] homep = new PImage[2], settingsp = new PImage[2], calendar = new PImage[2];
 int picCol = 255, colToBe = 255;
@@ -226,7 +226,7 @@ void keyPressed() {
 void drawTimes() {
   translate(0, 50);
   if (noSchool()) {
-    text("No School today. Reason: " + reason, width/2, height/2-105); //Drawing Prayer times
+    text("No School" , width/2, height/2-105); //Drawing Prayer times
   } else {
     text("P1: " + courses[getWeekNum()][0], width/2, height/2-105); //Drawing Prayer times
     text("P2: " + courses[getWeekNum()][1], width/2, height/2-52);
@@ -431,20 +431,19 @@ void guiSettings() {
 }
 boolean noSchool() {
   if (dayOfWeek == "Saturday" || dayOfWeek == "Sunday") {
-    reason = "Weekend";
     return true;
-  } else if (paDay()) {
-    reason = "PA Day";
+  } else if (paDay(month(), day(), year())) {
     return true;
   } else {
     return false;
   }
 }
-boolean paDay() {
-  int[] months = {2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5};
-  int[] days = {15, 2, 5, 12, 13, 14, 15, 16, 26, 27, 24};
-  for (int i = 0; i < days.length; i++) { 
-    if (day() == days[i] && month() == months[i]) {
+boolean paDay(int month, int day, int year) {
+  int[] months = {10, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 2, 3, 3, 3, 3, 3, 4, 4, 5};
+  int[] days = {11, 20, 21, 22, 23, 24, 27, 28, 29, 30, 31, 21, 14, 15, 16, 17, 18, 15, 23};
+  int[] yrs = {2021, 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022};
+  for (int i = 0; i < days.length; i++) {
+    if (day == days[i] && month == months[i] && year == yrs[i]) {
       return true;
     }
   }
@@ -452,9 +451,10 @@ boolean paDay() {
 }
 
 int getWeekNum() {
-  DateTime firstDay = new DateTime(2021, 9, 9, 12, 0);
+  DateTime firstDay = new DateTime(2021, 9, 5, 12, 0);
   DateTime now = new DateTime();
   Weeks weeks = Weeks.weeksBetween(firstDay, now);
+  println(weeks.getWeeks());
   return weeks.getWeeks() % 2;
 }
 

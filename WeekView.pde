@@ -96,15 +96,3 @@ void initWeekView() {
     rects.add(new WeekRect(i));
   }
 }
-
-boolean noSchoolWeek(String weekDay, int day, int month) {
-  if (weekDay == "Saturday" || weekDay == "Sunday") {
-    reason = "Weekend";
-    return true;
-  } else if (paDayOther(day, month)) {
-    reason = "PA Day";
-    return true;
-  } else {
-    return false;
-  }
-}

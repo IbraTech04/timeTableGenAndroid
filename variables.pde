@@ -1,6 +1,6 @@
 int[] colors = {60, 135, 245, 128, 0, 0, 92, 153, 107}, textColor = {255, 255, 255}, backGroundColor = {0, 0, 0};
 int verCounter = 0, updateState = 0;
-String ver = "4.1";
+String ver = "4.2";
 float transSpeed = 2.5;
 
 boolean updateMode = false;

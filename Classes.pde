@@ -8,8 +8,9 @@ class WeekRect {
   public WeekRect(int dayOfYear) {
     cal.set(Calendar.DAY_OF_YEAR, dayOfYear);
     weekNum = getWeekNum(cal.get(Calendar.MONTH)+1, cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.YEAR));
-
     if (week[cal.get(Calendar.DAY_OF_WEEK)].equals("Sunday") || week[cal.get(Calendar.DAY_OF_WEEK)].equals("Saturday")) {
+      noSchool = true;
+    } else if (paDay(cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.YEAR))) {
       noSchool = true;
     }
 
